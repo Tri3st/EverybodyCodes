@@ -1,5 +1,7 @@
 import java.util.ArrayList;
-
+import java.io.IOException;
+import utils.ENI;
+import utils.ReadFromFile;
 
 class Quest1 {
     private final String EXAMPLEPART1 = """
@@ -36,7 +38,12 @@ class Quest1 {
             this.lines = ReadFromFile.readArrayListfromString(this.EXAMPLEPART1);
         } else if (mode == 1) {
             System.out.println("Part 1 using notes.txt:");
-            this.lines = ReadFromFile.readArrayListFromFile("notesQuest1.txt");
+            try {
+                this.lines = ReadFromFile.readArrayListFromFile("notesQuest1.txt");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
         } else {
             System.out.println("Invalid mode for Part 1");
         }

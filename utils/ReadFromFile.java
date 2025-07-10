@@ -1,12 +1,11 @@
 package utils;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-class ReadFromFile {
+public class ReadFromFile {
 
     /**
      * Reads from a text file on disk and return the whole String

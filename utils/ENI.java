@@ -1,4 +1,7 @@
-class ENI {
+package utils;
+import java.util.ArrayList;
+
+public class ENI {
     private int a;
     private int b;
     private int c;
@@ -21,11 +24,23 @@ class ENI {
 
     private void calcEni(int a, int b, int c, int x, int y, int z, int m) {
         this.eni = this.calcSingleEni(a, x, m) + this.calcSingleEni(b, y, m) + this.calcSingleEni(c, z, m);
+    }
 
-    private void calcSingleEni(int n, int e, int m) {
+    private int calcSingleEni(int n, int e, int m) {
+        ArrayList<Integer> factors = new ArrayList<>();
         int res = 1;
         for (int i = 0; i < n + 1; i++) {
             res = (res * n) % m;
+            factors.add(res);
+        }
+        return this.listToInt(factors);
+    }
+
+    private int listToInt(ArrayList<Integer> list) {
+        int res = 0;
+        for (int i = 0; i < list.size(); i++) {
+            int power = list.size() - i - 1;
+            res += ((int) Math.pow((double) 10, (double) power)) * list.get(i);
         }
         return res;
     }
