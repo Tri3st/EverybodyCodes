@@ -1,48 +1,43 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ENI {
-    private int a;
-    private int b;
-    private int c;
-    private int x;
-    private int y;
-    private int z;
-    private int m;
-    private int total = 0;
+    private long a;
+    private long b;
+    private long c;
+    private long x;
+    private long y;
+    private long z;
+    private long m;
+    private long total = 0;
 
-    public ENI(String vars) {
-        String[] enis = vars.split(" ");
-        for (String eni : enis) {
-            switch (Character.toLowerCase(eni.charAt(0))) {
-                case 'a':
-                    a = Integer.parseInt(eni.substring(2));
-                    break;
-                case 'b':
-                    b = Integer.parseInt(eni.substring(2));
-                    break;
-                case 'c':
-                    c = Integer.parseInt(eni.substring(2));
-                    break;
-                case 'x':
-                    x = Integer.parseInt(eni.substring(2));
-                    break;
-                case 'y':
-                    y = Integer.parseInt(eni.substring(2));
-                    break;
-                case 'z':
-                    z = Integer.parseInt(eni.substring(2));
-                    break;
-                case 'm':
-                    m = Integer.parseInt(eni.substring(2));
-                    break;
-            }
+    public ENI(String vars, int maxLength) {
+        Pattern pattern = Pattern.compile("A=(?<a>\\d+) B=(?<b>\\d+) C=(?<c>\\d+) X=(?<x>\\d+) Y=(?<y>\\d+) Z=(?<z>\\d+) M=(?<m>\\d+)");
+        Matcher matcher = pattern.matcher(vars);
+        if(matcher.find()){
+            this.a = Long.parseLong(matcher.group("a"));
+            this.b = Long.parseLong(matcher.group("b"));
+            this.c = Long.parseLong(matcher.group("c"));
+            this.x = Long.parseLong(matcher.group("x"));
+            this.y = Long.parseLong(matcher.group("y"));
+            this.z = Long.parseLong(matcher.group("z"));
+            this.m = Long.parseLong(matcher.group("m"));
         }
-        this.total += this.calcEni(a,x,m);
-        this.total += this.calcEni(b,y,m);
-        this.total += this.calcEni(c,z,m);
+        if (maxLength > 0){
+            this.total += this.calcEni(a,x,m,maxLength);
+            this.total += this.calcEni(b,y,m,maxLength);
+            this.total += this.calcEni(c,z,m,maxLength);
+        } else {
+            this.total += this.calcEni(a,x,m);
+            this.total += this.calcEni(b,y,m);
+            this.total += this.calcEni(c,z,m);
+        }
+
     }
 
     /**
@@ -53,9 +48,9 @@ public class ENI {
      * @param maxLength int Maximum length of the array
      * @return Returns the ENI
      */
-    private int calcEni(int n, int e, int m, int maxLength) {
-        int tmp = 1;
-        ArrayList<Integer> tmparr = new ArrayList<>();
+    private long calcEni(long n, long e, long m, long maxLength) {
+        long tmp = 1;
+        ArrayList<Long> tmparr = new ArrayList<>();
         for (int i = 0; i < e; i++){
             tmp = (tmp * n) % m;
             tmparr.add(tmp);
@@ -64,7 +59,7 @@ public class ENI {
             }
         }
         Collections.reverse(tmparr);
-        int[] intArr = new int[tmparr.size()];
+        long[] intArr = new long[tmparr.size()];
         for(int i = 0; i < tmparr.size(); i++) {
             intArr[i] = tmparr.get(i);
         }
@@ -79,15 +74,15 @@ public class ENI {
      * @param m int Mod
      * @return ENI of the given parameters
      */
-    private int calcEni(int n, int e, int m) {
-        int tmp = 1;
-        ArrayList<Integer> tmparr = new ArrayList<>();
-        for (int i = 0; i < e; i++){
+    private long calcEni(long n, long e, long m) {
+        long tmp = 1;
+        ArrayList<Long> tmparr = new ArrayList<>();
+        for (long i = 0; i < e; i++){
             tmp = (tmp * n) % m;
             tmparr.add(tmp);
         }
         Collections.reverse(tmparr);
-        int[] intArr = new int[tmparr.size()];
+        long[] intArr = new long[tmparr.size()];
         for(int i = 0; i < tmparr.size(); i++) {
             intArr[i] = tmparr.get(i);
         }
@@ -101,20 +96,15 @@ public class ENI {
      * @param arr array of integers
      * @return the integer representation of the array
      */
-    private int arrayToInteger(int[] arr){
-        int total = 0;
-        if (arr.length < 1) return -1;
-        else if (arr.length == 1) return arr[0];
-        else {
-            for (int i = arr.length - 1; i > -1; i--) {
-                int exp = arr.length - i - 1;
-                total += arr[i] * (int) Math.pow((double) 10, (double)exp);
-            }
+    private long arrayToInteger(long[] arr){
+        String tmp = "";
+        for (long n: arr){
+            tmp += "" + n;
         }
-        return total;
+        return Long.parseLong(tmp);
     }
 
-    public int getTotal(){
+    public long getTotal(){
         return this.total;
     }
 

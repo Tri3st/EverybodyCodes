@@ -19,10 +19,10 @@ public class FileReader {
      */
     public static ArrayList<String> readFileArrayList(String fileName) throws IOException {
         Path path = Paths.get(fileName);
-        String pathstr = path.toString();
-        String[] patharr = pathstr.split("\n");
+        String content = Files.readString(path);
+        String[] lines = content.split("\n");
         ArrayList<String> arr = new ArrayList<>();
-        Collections.addAll(arr, patharr);
+        Collections.addAll(arr, lines);
         return arr;
     }
 
