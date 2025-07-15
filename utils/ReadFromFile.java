@@ -47,7 +47,7 @@ public class ReadFromFile {
      * Each line in the string should be separated by a newline character.
      * @return The ArrayList<String>
      */
-    public static ArrayList<String> readArrayListfromString(String data) {
+    public static ArrayList<String> readArrayListFromString(String data) {
         ArrayList<String> res = new ArrayList<>();
         String[] lines = data.split("\n");
         for (String line : lines) {

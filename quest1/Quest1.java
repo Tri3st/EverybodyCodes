@@ -84,22 +84,25 @@ public class Quest1 {
         if (mode == 1) {
             System.out.println(String.format("Part %d using example notes:", this.part));
             if(this.part == 1) {
-                this.lines.addAll(ReadFromFile.readArrayListfromString(this.EXAMPLEPART11));
+                this.lines.addAll(ReadFromFile.readArrayListFromString(this.EXAMPLEPART11));
             } else if (part ==2) {
-                this.lines.addAll(ReadFromFile.readArrayListfromString(this.EXAMPLEPART21));
+                this.lines.addAll(ReadFromFile.readArrayListFromString(this.EXAMPLEPART21));
             }
         } else if (mode == 2) {
             if(part ==1) {
-                this.lines.addAll(ReadFromFile.readArrayListfromString(this.EXAMPLEPART11));
+                this.lines.addAll(ReadFromFile.readArrayListFromString(this.EXAMPLEPART11));
             } else if (part ==2) {
-                this.lines.addAll(ReadFromFile.readArrayListfromString(this.EXAMPLEPART22));
+                this.lines.addAll(ReadFromFile.readArrayListFromString(this.EXAMPLEPART22));
             }
             
         } else if (mode == 0) {
             // read from notes file
-            System.out.println(String.format("Part %d using notes file notesPart%s:", this.part, this.part);
-            this.lines.addAll(ReadFromFile.readArrayListfromFile(this.fileName));
-        
+            System.out.println(String.format("Part %d using notes file notesPart%s:", this.part, this.part));
+            try {
+                this.lines.addAll(ReadFromFile.readArrayListFromFile(this.fileName));
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
         } else {
             System.out.println("Invalid mode for Part " + part);
         }
