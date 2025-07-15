@@ -33,6 +33,8 @@ public class Quest1 {
 
     private int part; // part 1, 2 or 3
     private int mode; // mode indicates to use the example notes or a notes file
+
+    private ArrayList<ENI> enis = new ArrayList<>();
         
     public Quest1(int part, int mode) {
         this.lines = new ArrayList<>();
@@ -68,6 +70,7 @@ public class Quest1 {
                     Integer.parseInt(matcher.group("m"))
                 );
                 System.out.println(eni.toString() + " -> " + eni);
+                enis.add(eni);
             }
         }
     }
