@@ -1,51 +1,53 @@
 package utils;
 import java.util.ArrayList;
+import java.math.BigInteger;
 
 public class ENI {
-    private int a;
-    private int b;
-    private int c;
-    private int x;
-    private int y;
-    private int z;
-    private int m;
-    private int eni;
+    private BigInteger a;
+    private BigInteger b;
+    private BigInteger c;
+    private BigInteger x;
+    private BigInteger y;
+    private BigInteger z;
+    private BigInteger m;
+    private BigInteger eni;
 
     public ENI(int a, int b, int c, int x, int y, int z, int m) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.m = m;
-        this.calcEni(a,b,c,x,y,z,m);
+        this.a = BigInteger.valueOf(a);
+        this.b = BigInteger.valueOf(b);
+        this.c = BigInteger.valueOf(c);
+        this.x = BigInteger.valueOf(x);
+        this.y = BigInteger.valueOf(y);
+        this.z = BigInteger.valueOf(z);
+        this.m = BigInteger.valueOf(m);
+        this.calcEni(this.a, this.b, this.c, this.x, this.y, this.z, this.m);
     }
 
-    private void calcEni(int a, int b, int c, int x, int y, int z, int m) {
-        this.eni = this.calcSingleEni(a, x, m) + this.calcSingleEni(b, y, m) + this.calcSingleEni(c, z, m);
+    private void calcEni(BigInteger a, BigInteger b, BigInteger c, BigInteger x, BigInteger y, BigInteger z, BigInteger m) {
+        this.eni = this.calcSingleEni(a, x, m).add(this.calcSingleEni(b, y, m)).add(this.calcSingleEni(c, z, m));
     }
 
-    private int calcSingleEni(int n, int e, int m) {
-        ArrayList<Integer> factors = new ArrayList<>();
-        int res = 1;
-        for (int i = 0; i < n + 1; i++) {
-            res = (res * n) % m;
+    private BigInteger calcSingleEni(BigInteger n, BigInteger e, BigInteger m) {
+        ArrayList<BigInteger> factors = new ArrayList<>();
+        BigInteger res = BigInteger.ONE;
+        for (BigInteger i = BigInteger.ZERO; i.compareTo(n.add(BigInteger.ONE)) < 0; i = i.add(BigInteger.ONE)) {
+            res = res.multiply(n).mod(m);
             factors.add(res);
         }
         return this.listToInt(factors);
     }
 
-    private int listToInt(ArrayList<Integer> list) {
-        int res = 0;
+    private BigInteger listToInt(ArrayList<BigInteger> list) {
+        BigInteger res = BigInteger.ZERO;
         for (int i = 0; i < list.size(); i++) {
             int power = list.size() - i - 1;
-            res += ((int) Math.pow((double) 10, (double) power)) * list.get(i);
+            BigInteger factor = BigInteger.TEN.pow(power).multiply(list.get(i));
+            res = res.add(factor);
         }
         return res;
     }
 
-    public int getEni() {
+    public BigInteger getEni() {
         return eni;
     }
 
