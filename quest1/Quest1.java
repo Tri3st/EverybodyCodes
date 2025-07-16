@@ -50,6 +50,8 @@ public class Quest1 {
         this.doReadLines();
       
         this.calcENIs();
+
+        this.printHighest();
         
     }
 
@@ -59,7 +61,6 @@ public class Quest1 {
             Pattern pattern = Pattern.compile(text);
             Matcher matcher = pattern.matcher(line);
             if (matcher.matches()){
-                // System.out.println("group a :" + matcher.group("a"));
                 ENI eni = new ENI(
                     Integer.parseInt(matcher.group("a")),
                     Integer.parseInt(matcher.group("b")),
@@ -80,7 +81,6 @@ public class Quest1 {
      * mode 0 uses the notes file for the part selected, 
      * mode 1 uses the first example notes,
      * mode 2 uses the second example notes (if any. otherwise uses the first example notes).
-
      * 
      */
     private void doReadLines() {
@@ -113,6 +113,20 @@ public class Quest1 {
               for (String line : this.lines) {
             System.out.println(line);
         }
+    }
+
+    private void printHighest() {
+        if (this.enis.isEmpty()) {
+            System.out.println("No ENIs calculated.");
+            return;
+        }
+        ENI highest = this.enis.get(0);
+        for (ENI eni : this.enis) {
+            if (eni.getEni().compareTo(highest.getEni()) > 0) {
+                highest = eni;
+            }
+        }
+        System.out.println("Highest ENI: " + highest);
     }
 
 }
