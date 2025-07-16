@@ -12,16 +12,22 @@ public class ENI {
     private BigInteger z;
     private BigInteger m;
     private BigInteger eni;
+    private int maxIterations; // if 0 than unlimited iterations, otherwise the max iterations to calculate ENIs
 
-    public ENI(int a, int b, int c, int x, int y, int z, int m) {
-        this.a = BigInteger.valueOf(a);
-        this.b = BigInteger.valueOf(b);
-        this.c = BigInteger.valueOf(c);
-        this.x = BigInteger.valueOf(x);
-        this.y = BigInteger.valueOf(y);
-        this.z = BigInteger.valueOf(z);
-        this.m = BigInteger.valueOf(m);
-        this.calcEni(this.a, this.b, this.c, this.x, this.y, this.z, this.m);
+    public ENI(BigInteger a, BigInteger b, BigInteger c, BigInteger x, BigInteger y, BigInteger z, BigInteger m) {
+        this(a,b,c,x,y,z,m,0);
+    }
+
+    public ENI(BigInteger a, BigInteger b, BigInteger c, BigInteger x, BigInteger y, BigInteger z, BigInteger m, int maxIterations) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.m = m;
+        this.maxIterations = maxIterations;
+    this.calcEni(this.a, this.b, this.c, this.x, this.y, this.z, this.m);
     }
 
     private void calcEni(BigInteger a, BigInteger b, BigInteger c, BigInteger x, BigInteger y, BigInteger z, BigInteger m) {
@@ -29,10 +35,6 @@ public class ENI {
         BigInteger res1 = this.calcSingleEni(a, x, m);
         BigInteger res2 = this.calcSingleEni(b, y, m);
         BigInteger res3 = this.calcSingleEni(c, z, m);
-        System.out.println("a: %s x: %s m: %s -> %s".formatted(a, x, m, res1.toString(10)));
-        System.out.println("b: %s y: %s m: %s -> %s".formatted(b, y, m, res2.toString(10)));
-        System.out.println("c: %s z: %s m: %s -> %s".formatted(c, z, m, res3.toString(10)));
-        System.out.println("Final ENI: %s".formatted(res1.add(res2).add(res3).toString(10)));
         this.eni = this.calcSingleEni(a, x, m).add(this.calcSingleEni(b, y, m)).add(this.calcSingleEni(c, z, m));
     }
 
@@ -41,6 +43,9 @@ public class ENI {
         BigInteger res = BigInteger.ONE;
         for (BigInteger i = BigInteger.ZERO; i.compareTo(e) < 0; i = i.add(BigInteger.ONE)) {
             res = res.multiply(n).mod(m);
+            if (this.maxIterations > 0 && factors.size() == this.maxIterations) {
+                factors.remove(0); // remove the oldest element to keep size constant
+            }
             factors.add(res);
         }
         System.out.println("Factors: " + factors);

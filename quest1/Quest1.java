@@ -6,6 +6,7 @@ import utils.ENI;
 import utils.ReadFromFile;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.math.BigInteger;
 
 public class Quest1 {
     private final String EXAMPLEPART11 = """
@@ -33,12 +34,14 @@ public class Quest1 {
 
     private int part; // part 1, 2 or 3
     private int mode; // mode indicates to use the example notes or a notes file
+    private int maxIterations = 0; // if 0 than unlimited iterations, otherwise the max iterations to calculate ENIs
 
     private ArrayList<ENI> enis = new ArrayList<>();
         
     public Quest1(int part, int mode) {
         this.lines = new ArrayList<>();
         this.part = part;
+        if (part == 2) this.maxIterations = 5;
         this.mode = mode;
         this.fileName = "quest1/notesPart" + part + ".txt";
     }
@@ -61,15 +64,29 @@ public class Quest1 {
             Pattern pattern = Pattern.compile(text);
             Matcher matcher = pattern.matcher(line);
             if (matcher.matches()){
-                ENI eni = new ENI(
-                    Integer.parseInt(matcher.group("a")),
-                    Integer.parseInt(matcher.group("b")),
-                    Integer.parseInt(matcher.group("c")),
-                    Integer.parseInt(matcher.group("x")),
-                    Integer.parseInt(matcher.group("y")),
-                    Integer.parseInt(matcher.group("z")),
-                    Integer.parseInt(matcher.group("m"))
-                );
+                ENI eni;
+                if (this.maxIterations > 0) {
+                    eni = new ENI(
+                        new BigInteger(matcher.group("a"), 10),
+                        new BigInteger(matcher.group("b"), 10),
+                        new BigInteger(matcher.group("c"), 10),
+                        new BigInteger(matcher.group("x"), 10),
+                        new BigInteger(matcher.group("y"), 10),
+                        new BigInteger(matcher.group("z"), 10),
+                        new BigInteger(matcher.group("m"), 10),
+                        this.maxIterations
+                    );
+                } else {
+                    eni = new ENI(
+                        new BigInteger(matcher.group("a"), 10),
+                        new BigInteger(matcher.group("b"), 10),
+                        new BigInteger(matcher.group("c"), 10),
+                        new BigInteger(matcher.group("x"), 10),
+                        new BigInteger(matcher.group("y"), 10),
+                        new BigInteger(matcher.group("z"), 10),
+                        new BigInteger(matcher.group("m"), 10)
+                    );
+                }
                 System.out.println(eni.toString() + " -> " + eni);
                 enis.add(eni);
             }
