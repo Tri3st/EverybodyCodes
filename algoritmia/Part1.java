@@ -1,15 +1,13 @@
 package algoritmia;
+import java.io.IOException;
+
 import utils.ReadFromFile;
 
 public class Part1 {
-    private final String example = """
-            WORDS:THE,OWE,MES,ROD,HER,QAQ
+    private final String EXAMPLE = """
+            WORDS:THE,OWE,MES,ROD,HER
 
-            AWAKEN THE POWE ADORNED WITH THE FLAMES BRIGHT IRE
-            THE FLAME SHIELDED THE HEART OF THE KINGS
-            POWE PO WER P OWE R
-            THERE IS THE END
-            QAQAQ""";
+            AWAKEN THE POWER ADORNED WITH THE FLAMES BRIGHT IRE""";
     private String[] words;
     private String[] sentences;
     private int nrOfRunicWords;
@@ -18,7 +16,8 @@ public class Part1 {
         System.out.println("Part 1: ");
         this.nrOfRunicWords = 0;
     
-        this.extractWords(1);
+        this.extractWords(2);
+        this.countRunicWords();
     }
 
 
@@ -29,25 +28,61 @@ public class Part1 {
      */
     private void extractWords(int mode) {
         if (mode == 1) {
-            String[] lines = example.split("\n");
+            this.getStrings(this.EXAMPLE);
 
-            this.words = lines[0].split(":")[1].split(",");
-            System.out.println("Words extracted: " + String.join(", ", words));
-            String[] tmp_sentences = new String[lines.length - 2];
-            for (int i = 2; i < lines.length; i++) {
-                tmp_sentences[i - 2] = lines[i].trim();
-            } 
-            this.sentences = tmp_sentences;
-            System.out.println("Sentences extracted: " + String.join(" ", sentences));
-
-        } else {
+        } else if (mode == 2) {
             // Logic for extracting from notes.txt would go here
+            try {
+                String dataLines = ReadFromFile.readStringFromFile("algoritmia/notesPart1.txt");
+                System.out.println("LOADING DATA FROM FILE ");
+                System.out.println(dataLines.toString());
+                this.getStrings(dataLines);
+            } catch (IOException e) {
+                System.err.println("Error reading from file: " + e.getMessage());
+                return;
+            }
+            
         }
 
         System.out.println("Words extracted: " + words.length);
         System.out.println("Sentences extracted: " + sentences.length);
         
         // Further processing can be added here
+    }
+
+    private void getStrings(String dataString){
+        String[] lines = dataString.split("\n");
+
+            this.words = lines[0].split(":")[1].split(",");
+            System.out.println("Words extracted: " + String.join(", ", words));
+            this.sentences = lines[2].split(", ");
+            System.out.println("Sentences extracted: " + String.join("\n", sentences));
+    }
+
+    private void countRunicWords() {
+        int total = 0;
+        for(String rWord: this.words) {
+            int count = 0;
+            for (String sentence : this.sentences) {
+                count += countRunicWordsInSentence(rWord, sentence);
+            }
+            System.out.println("Runic word '" + rWord + "' found " + count + " times in all sentences.");
+            total += count;
+        }
+        this.nrOfRunicWords = total;
+        System.out.println("Total runic words found: " + this.nrOfRunicWords);
+    }
+
+    private int countRunicWordsInSentence(String runicWord, String sentence) {
+        int count = 0;
+        int wordLength = runicWord.length();
+        int sentenceLength = sentence.length();
+        for (int i = 0; i <= sentenceLength - wordLength; i++) {
+            if (sentence.substring(i, i + wordLength).equals(runicWord)) {
+                count++;
+            }
+        }
+        return count;
     }
     
 }
