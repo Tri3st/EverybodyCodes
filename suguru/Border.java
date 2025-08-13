@@ -1,3 +1,5 @@
+package suguru;
+
 public enum Border {
     NONE(0), 
     TOP(1), 
