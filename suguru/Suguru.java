@@ -1,13 +1,15 @@
 package suguru;
 
 /*  
- * +-+-+-+
- * |1|2| |
- * +-+-+-+
- * | |3| |
- * +-+-+-+
- * | | | |
- * +-+-+-+
+ * +-+-+-+-+
+ * |1| | | |
+ * +-+-+-+-+
+ * |4|3| | |
+ * +-+-+-+-+
+ * | | | |5|
+ * +-+-+-+-+
+ * |2|4|1| |
+ * +-+-+-+-+
 */
 
 public class Suguru {
@@ -19,7 +21,7 @@ public class Suguru {
         this.grid = new int[size][size];
     }
 
-    public void setCell(int row, int col, int value) {
+    public void setCell(int row, int col, int value, int blockNr) {
         if (row >= 0 && row < size && col >= 0 && col < size) {
             grid[row][col] = value;
         }

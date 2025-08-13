@@ -6,11 +6,9 @@ public class Block {
 
     public Block(int size) {
         this.size = size;
-        this.cells = new Cell[size][size];
+        this.cells = new Cell[size];
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                cells[i][j] = new Cell(); // Initialize each cell as empty
-            }
+            cells[i] = new Cell(); // Initialize each cell as empty
         }
     }
 
