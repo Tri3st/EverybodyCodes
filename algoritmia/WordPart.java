@@ -26,6 +26,8 @@ public class WordPart {
     public WordPart(int part) {
         System.out.println("Word Part " + part + ": ");
         this.nrOfRunicWords = 0;
+
+        this.part = part;
     
         this.extractWords(1);
         this.countRunicWords();
