@@ -1,10 +1,10 @@
 package ducksndragons.quest2;
 
 public class Complex {
-    private int x;
-    private int y;
+    private long x;
+    private long y;
 
-    public Complex(int x, int y) {
+    public Complex(long x, long y) {
         this.x = x;
         this.y = y;
     }
@@ -21,11 +21,25 @@ public class Complex {
         this.y = 0;
     }
 
-    public int getX() {
+    /**
+     * Initialize the Complex with given x and y
+     * @param x The x
+     * @param y The y
+     */
+    public void setComplex(long x, long y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public Complex copyComplex() {
+        return new Complex(this.x, this.y);
+    }
+
+    public long getX() {
         return x;
     }
 
-    public int getY() {
+    public long getY() {
         return y;
     }
 
@@ -38,8 +52,8 @@ public class Complex {
     public Complex addComplex(Complex c){
         // X1 = this.x
         // X2 = c.getX()
-        int x = this.x + c.getX();
-        int y = this.y + c.getY();
+        long x = this.x + c.getX();
+        long y = this.y + c.getY();
         return new Complex(x, y);
     }
 
@@ -50,8 +64,8 @@ public class Complex {
      * @return Complex number with the calculation done
      */
     public Complex multiplyComplex(Complex c){
-        int x = this.x * c.getX() - this.y * c.getY();
-        int y = this.x * c.getY() + this.y * c.getX();
+        long x = this.x * c.getX() - this.y * c.getY();
+        long y = this.x * c.getY() + this.y * c.getX();
         return new Complex(x, y);
     }
 
@@ -62,9 +76,8 @@ public class Complex {
      * @return Complex number with the calculation done
      */
     public Complex divideComplex(Complex c){
-
-        int x = 0;
-        int y = 0;
+        long x = 0;
+        long y = 0;
         try {
             x = this.x / c.getX();
             y = this.y / c.getY();
