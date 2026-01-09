@@ -13,11 +13,9 @@ public class Complex {
         this(0, 0);
     }
 
-    public void setComplex(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-
+    /**
+     * Initialize the complex number to [0,0]
+     */
     public void resetComplex(){
         this.x = 0;
         this.y = 0;
@@ -27,16 +25,8 @@ public class Complex {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     /**
