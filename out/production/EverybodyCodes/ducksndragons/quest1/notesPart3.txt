@@ -1,0 +1,3 @@
+Galfeth,Brylselor,Tyrcoryx,Irynurath,Grimulrix,Aelithrax,Larmirath,Nyssquor,Aeloryx,Kazxal,Sylkynar,Zyradarin,Vyrelor,Calulrix,Jaerxith,Bryndrith,Nyssvel,Ulzyph,Kalwyris,Dorzral,Fenzor,Zynfeth,Krythdaros,Xaralquin,Vyrzor,Kronlorath,Ilmarmarn,Quarnkael,Hyrajor,Cynvarroth
+
+L31,R44,L34,R31,L26,R5,L27,R49,L27,R25,L16,R15,L14,R25,L45,R43,L42,R39,L10,R49,L5,R19,L5,R41,L5,R10,L5,R6,L5,R12,L5,R14,L5,R20,L5,R11,L5,R15,L5,R26,L34,R38,L6,R30,L37,R46,L41,R26,L26,R18,L40,R39,L45,R44,L32,R48,L34,R15,L44
