@@ -9,7 +9,7 @@ public class ReadFromFile {
 
     /**
      * Reads from a text file on disk and return the whole String
-     * @param filenName The filename (whole path)
+     * @param fileName The filename (whole path)
      * @return The whole String
      * @throws IOException
      */

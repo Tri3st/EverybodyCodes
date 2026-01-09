@@ -1,0 +1,3 @@
+Azquin,Zyrixquor,Zorfal,Dargnar,Urithtor,Arkvel,Shaelsyron,Xilagrath,Cragrovan,Qyradar,Cynvarophis,Zarathzrak,Maralacris,Balthophis,Vyrladar,Drellorath,Valvor,Sarnquin,Tarlphor,Gavgryph
+
+L10,R18,L7,R11,L6,R14,L12,R16,L16,R16,L5,R16,L5,R14,L5,R5,L5,R5,L5,R19,L12,R17,L16,R11,L13,R10,L6,R9,L16
