@@ -72,7 +72,10 @@ public class Crates {
         System.out.printf("Total : %d%n", this.total);
     };
 
-    public void part2(){};
+    public void part2(){
+        int maxLength = 20;
+        for 
+    };
 
     public void part3(){};
 
