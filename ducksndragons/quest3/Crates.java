@@ -1,31 +1,28 @@
 package ducksndragons.quest3;
 
-import ducksndragons.quest2.Complex;
-import utils.ReadFromFile;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashSet;
+import java.util.Set;
+import utils.ReadFromFile;
 
 public class Crates {
     private ArrayList<Integer> crates;
-    private int maxWeight;
+    private int total;
+    private final String QUEST = "3";
 
-    public Crates(int quest, int type, int part) throws IOException {
-        this.crates = new ArrayList<>();
-        this.maxWeight = 0;
-        switch (part) {
+    public Crates(int type, int part) throws IOException {
+        this.total = 0;
+        crates = new ArrayList<>();
+        this.readFile(type, part);
+        switch(part) {
             case 1:
-                this.readFile(quest, type, 1);
                 this.part1();
                 break;
             case 2:
-                this.readFile(quest, type, 2);
                 this.part2();
                 break;
             case 3:
-                this.readFile(quest, type, 3);
                 this.part3();
                 break;
         }
@@ -37,7 +34,7 @@ public class Crates {
      * @param part Which part to use
      * @throws IOException Throws an IOException when something goes wrong while reading file
      */
-    private void readFile(int quest, int type, int part) throws IOException {
+    private void readFile(int type, int part) throws IOException {
         System.out.printf("Doing part %d with type %d%n", part, type);
         String fileName;
         if (type == 0) {
@@ -50,7 +47,7 @@ public class Crates {
             // Throw a ValueException
             throw new IllegalArgumentException("Invalid type parameter. Expected 0 or 1, got: " + type);
         }
-        String path = "ducksndragons/quest%d/%s".formatted(quest, fileName);
+        String path = "ducksndragons/quest" + this.QUEST + "/" + fileName;
         String input;
         try {
             input = ReadFromFile.readStringFromFile(path);
@@ -58,33 +55,28 @@ public class Crates {
             throw new IOException("Error reading file: " + path, e);
         }
         System.out.printf("Input : %s%n", input);
-        String[] digits = input.split(",");
-        for (String d: digits){
-            this.crates.add(Integer.parseInt(d));
+
+        String line[] = input.split(",");
+        for (String st: line){
+            this.crates.add(Integer.parseInt(st));
         }
     }
 
-    private int getHeaviest(ArrayList<Integer> list){
-        int highest = 0;
-        for(int c: list){
-            if (c > highest) highest = c;
-        }
-        return highest;
+    public void part1(){
+        Set<Integer> crats = new HashSet<>();
+        for(int d: this.crates) crats.add(d);
+        int total = 0;
+        for (int x: crats) total += x;
+        this.total = total;
+        System.out.println(crats);
+        System.out.printf("Total : %d%n", this.total);
+    };
+
+    public void part2(){};
+
+    public void part3(){};
+
+    public String toString(){
+        return this.crates.toString();
     }
-
-    private void part1(){
-        ArrayList<Integer> crates = new ArrayList<>(this.crates);
-        int heaviest = 0;
-        while(!crates.isEmpty()){
-            int heavy = this.getHeaviest(crates);
-            crates.remove(heavy);
-            heaviest += heavy;
-        }
-        System.out.printf("Total weight = %d", heaviest);
-
-    }
-
-    private void part2(){}
-
-    private void part3(){}
 }
