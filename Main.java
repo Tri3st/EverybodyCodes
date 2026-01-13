@@ -1,13 +1,14 @@
 import algoritmia.Part1;
+import ducksndragons.quest2.Clarity;
+import ducksndragons.quest3.Crates;
+
+import java.io.IOException;
 
 class Main {
-    public static void main(String[] args) {
-        System.out.println("Kingdoms of Alogtiritmia");
+    public static void main(String[] args) throws IOException {
+        System.out.println("A song of Ducks and Dragons..");
 
-        // Part1 part1 = new Part1();
-        Part2 part2 = new Part2();
-        
-
+        Crates c = new Crates(0, 1);
 
     }
 }
