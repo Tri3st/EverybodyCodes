@@ -2,11 +2,19 @@ import algoritmia.Part1;
 
 class Main {
     public static void main(String[] args) {
-        System.out.println("Kingdoms of Alogtiritmia");
+        System.out.println("== Bowling Game ==");
 
-        // Part1 part1 = new Part1();
-        Part2 part2 = new Part2();
+        int[] test1 = {1,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] test2 = {4,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] test3 = {8,2,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] test4 = {7,3,4,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] test5 = {6,4,7,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
         
+        BowlingGame bg = new BowlingGame();
+        for (int x:test1){
+            bg.roll(x);
+        }
+        System.out.println(bg.score());
 
 
     }
