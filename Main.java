@@ -1,14 +1,21 @@
 import algoritmia.Part1;
-import ducksndragons.quest2.Clarity;
-import ducksndragons.quest3.Crates;
-
-import java.io.IOException;
 
 class Main {
-    public static void main(String[] args) throws IOException {
-        System.out.println("A song of Ducks and Dragons..");
+    public static void main(String[] args) {
+        System.out.println("== Bowling Game ==");
 
-        Crates c = new Crates(0, 1);
+        int[] test1 = {1,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] test2 = {4,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] test3 = {8,2,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] test4 = {7,3,4,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] test5 = {6,4,7,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+        BowlingGame bg = new BowlingGame();
+        for (int x:test1){
+            bg.roll(x);
+        }
+        System.out.println(bg.score());
+
 
     }
 }

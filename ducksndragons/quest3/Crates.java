@@ -1,6 +1,5 @@
 package ducksndragons.quest3;
 
-<<<<<<< Updated upstream
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -24,32 +23,6 @@ public class Crates {
                 this.part2();
                 break;
             case 3:
-=======
-import utils.ReadFromFile;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
-public class Crates {
-    private ArrayList<Integer> crates;
-    private int maxWeight;
-    private final int QUEST = 3;
-
-    public Crates(int type, int part) throws IOException {
-        this.crates = new ArrayList<>();
-        this.maxWeight = 0;
-        switch (part) {
-            case 1:
-                this.readFile(type, 1);
-                this.part1();
-                break;
-            case 2:
-                this.readFile(type, 2);
-                this.part2();
-                break;
-            case 3:
-                this.readFile(type, 3);
->>>>>>> Stashed changes
                 this.part3();
                 break;
         }
@@ -74,11 +47,7 @@ public class Crates {
             // Throw a ValueException
             throw new IllegalArgumentException("Invalid type parameter. Expected 0 or 1, got: " + type);
         }
-<<<<<<< Updated upstream
         String path = "ducksndragons/quest" + this.QUEST + "/" + fileName;
-=======
-        String path = "ducksndragons/quest%d/%s".formatted(QUEST, fileName);
->>>>>>> Stashed changes
         String input;
         try {
             input = ReadFromFile.readStringFromFile(path);
@@ -103,33 +72,10 @@ public class Crates {
         System.out.printf("Total : %d%n", this.total);
     };
 
-    public void part2(){};
 
     public void part3(){};
 
     public String toString(){
         return this.crates.toString();
     }
-<<<<<<< Updated upstream
-}
-=======
-
-    private void part1(){
-        ArrayList<Integer> crates = new ArrayList<>(this.crates);
-        int heaviest = 0;
-        while(!crates.isEmpty()){
-            int heavy = this.getHeaviest(crates);
-            crates.remove(heavy);
-            heaviest += heavy;
-        }
-        System.out.printf("Total weight = %d", heaviest);
-
     }
-
-    private void part2(){
-
-    }
-
-    private void part3(){}
-}
->>>>>>> Stashed changes
