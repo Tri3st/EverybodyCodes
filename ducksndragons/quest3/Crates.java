@@ -72,8 +72,9 @@ public class Crates {
         System.out.printf("Total : %d%n", this.total);
     };
 
+    public void part2(){}
 
-    public void part3(){};
+    public void part3(){}
 
     public String toString(){
         return this.crates.toString();
