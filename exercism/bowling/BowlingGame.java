@@ -1,6 +1,6 @@
 package exercism.bowling;
 
-import java.utils.ArrayList;
+import java.util.ArrayList;
 
 public class BowlingGame {
     private ArrayList<Frame> frames;

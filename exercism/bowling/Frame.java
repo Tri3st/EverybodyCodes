@@ -23,12 +23,24 @@ public class Frame {
         }
     }
 
+    public FrameType getType() {
+        return type;
+    }
+
+    public void setType(FrameType type) {
+        this.type = type;
+    }
+
     public int getStrikeScore(){
         return this.rolls[0].getRoll() + this.rolls[1].getRoll();
     }
 
     public int getSpareScore(){
-        return this.rolls[0];
+        return this.rolls[0].getRoll();
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public boolean isDone(){
