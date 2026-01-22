@@ -5,18 +5,16 @@ import java.io.IOException;
 import utils.ReadFromFile;
 
 public class WordPart {
-    private final String EXAMPLE1 = """
-                                    WORDS:THE,OWE,MES,ROD,HER
+    private final String EXAMPLE1 = "WORDS:THE,OWE,MES,ROD,HER\n\n" + 
 
-                                    AWAKEN THE POWER ADORNED WITH THE FLAMES BRIGHT IRE""";
-    private final String EXAMPLE2 = """
-                                    WORDS:THE,OWE,MES,ROD,HER,QAQ
+                                    "AWAKEN THE POWER ADORNED WITH THE FLAMES BRIGHT IRE";
+    private final String EXAMPLE2 = "WORDS:THE,OWE,MES,ROD,HER,QAQ\n\n" +
 
-                                    AWAKEN THE POWE ADORNED WITH THE FLAMES BRIGHT IRE
-                                    THE FLAME SHIELDED THE HEART OF THE KINGS
-                                    POWE PO WER P OWE R
-                                    THERE IS THE END
-                                    QAQAQ""";
+                                    "AWAKEN THE POWER ADORNED WITH THE FLAMES BRIGHT IRE\n" +
+                                    "THE FLAME SHIELDED THE HEART OF THE KINGS\n" +
+                                    "POWER POWER POWER\n" +
+                                    "THERE IS THE END\n" +
+                                    "QAQAQ";
 
     private String[] words;
     private String[] sentences;
