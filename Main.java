@@ -1,21 +1,10 @@
-import algoritmia.Part1;
-import exercism.bowling.BowlingGame;
-import exercism.bowling.Frame;
+import algoritmia.quest3.Quest3;
 
 class Main {
     public static void main(String[] args) {
-        System.out.println("== Bowling Game ==");
+        System.out.println("==== Kingdom of Algorithmia ====");
+        System.out.println("========== Quest 3 =============");
 
-        int[] test1 = {1,9,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-        int[] test2 = {4,3,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-        int[] test3 = {8,2,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-        int[] test4 = {7,3,4,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-        int[] test5 = {6,4,7,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
-            Quest2 q2 = new Quest2(1, 1);
-
-
-
-
+        Quest3 q3 = new Quest3(1, 0);
     }
 }

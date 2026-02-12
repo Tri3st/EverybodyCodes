@@ -1,4 +1,4 @@
-package algoritmia;
+package algoritmia.quest1;
 
 public class Part2 extends WordPart {
    

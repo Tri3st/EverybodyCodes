@@ -1,4 +1,4 @@
-package algoritmia;
+package algoritmia.quest1;
 
 import java.io.IOException;
 
@@ -49,7 +49,7 @@ public class WordPart {
         } else if (mode == 2) {
             // Logic for extracting from notes.txt would go here
             try {
-                String dataLines = ReadFromFile.readStringFromFile("algoritmia/notesPart1.txt");
+                String dataLines = ReadFromFile.readStringFromFile("algoritmia/quest1/notesPart1.txt");
                 System.out.println("LOADING DATA FROM FILE ");
                 System.out.println(dataLines.toString());
                 this.getStrings(dataLines);
