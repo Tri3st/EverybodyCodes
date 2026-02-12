@@ -11,13 +11,14 @@ public class Part implements iPart {
     private ArrayList<String> words;
     private ArrayList<String> inscriptions;
     private int nrOfRunicWords;
+    private String[][] scaleGrid;
 
     public Part(int part, String str) {
         System.out.printf("-----====> Part %d <======-------%n%n", part);
         this.words = new ArrayList<>();
         this.inscriptions = new ArrayList<>();
         this.nrOfRunicWords = 0;
-        if (part == 1 || part == 2){
+        if (part == 1 || part == 2 || part == 3){
             String[] datas = str.split("\n\n");
             Matcher header =  Pattern.compile("^WORDS:(.*)$").matcher(datas[0]);
             if (header.find()){
@@ -28,6 +29,9 @@ public class Part implements iPart {
                 }
             }
             this.inscriptions = new ArrayList<>(List.of(datas[1].split("\n")));
+        }
+        if (part == 3) {
+            this.convertListsToArray();
         }
         this.count_runic_words(part);
     }
@@ -149,7 +153,31 @@ public class Part implements iPart {
         this.words.addAll(toAdd);
     }
 
+    private void convertListsToArray(){
+        int dimX = this.inscriptions.getFirst().length();
+        int dimY = this.inscriptions.size();
+        this.scaleGrid = new String[dimY][dimX];
+        for (int y = 0; y < dimY; y++){
+            String line = this.inscriptions.get(y);
+            for (int x = 0; x < dimX; x++){
+                this.scaleGrid[y][x] = String.valueOf(line.charAt(x));
+            }
+        }
+    }
+
+    private void printScaleGrid(){
+        int dimX = this.inscriptions.getFirst().length();
+        int dimY = this.inscriptions.size();
+        for (int y = 0; y < dimY; y++){
+            for (int x = 0; x < dimX; x++){
+                System.out.printf("%s", this.scaleGrid[y][x]);
+            }
+            System.out.println();
+        }
+    }
+
     @Override
     public void countPart3() {
+        this.printScaleGrid();
     }
 }
